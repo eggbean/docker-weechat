@@ -2,16 +2,16 @@ Dockerfile for WeeChat IRC Client
 ===================
 
 This is an automatically built Alpine Docker image for WeeChat. It will rebuild every time there is a new release on
-[Github](https://github.com/weechat/weechat/releases) or when the [base image](https://hub.docker.com/_/alpine/) gets
-updated.  Most other WeeChat Dockerfiles use the .apk packages in the Alpine repository, which are usually older
-versions.
+ [Github](https://github.com/weechat/weechat/releases) or when the [base image](https://hub.docker.com/_/alpine/) gets
+ updated.  Most other WeeChat Dockerfiles use the .apk packages in the Alpine repository, which are usually older
+ versions.
 
 It's based on the [Dockerfile by jkaberg](https://github.com/jkaberg/dockerfiles/tree/master/weechat), which no longer
-compiles, so this is updated to work with more recent releases of WeeChat.  Also, additional plugins can be chosen, so
-that every WeeChat script plugin can be added, apart from the one for JavaScript.
+ compiles, so this is updated to work with more recent releases of WeeChat.  Also, additional plugins can be chosen, so
+ that every WeeChat script plugin can be added, apart from the one for JavaScript.
 
 The less commonly used Guile (Scheme), Lua, PHP and Tcl plugins are disabled by default, to save a bit of memory and
-disk space, but they can easily be enabled.
+ disk space, but they can easily be enabled.
 
 ### Enable/disable plugins:
 
@@ -55,3 +55,6 @@ or docker-compose:
 
 Once up and running, use ```ctrl-p```, ```ctrl-q``` to detach from the session and ```docker attach weechat``` to
 reattach.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTk1MTcwOTAyNV19
+-->
