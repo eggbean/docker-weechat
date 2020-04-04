@@ -1,60 +1,63 @@
-Dockerfile for WeeChat IRC Client
+WeeChat IRC Client
 ===================
 
-This is an automatically built Alpine Docker image for WeeChat. It will rebuild every time there is a new release on
- [Github](https://github.com/weechat/weechat/releases) or when the [base image](https://hub.docker.com/_/alpine/) gets
- updated.  Most other WeeChat Dockerfiles use the .apk packages in the Alpine repository, which are usually older
- versions.
+* Automatically built Alpine-based Docker image for WeeChat
 
-It's based on the [Dockerfile by jkaberg](https://github.com/jkaberg/dockerfiles/tree/master/weechat), which no longer
- compiles, so this is updated to work with more recent releases of WeeChat.  Also, additional plugins can be chosen, so
- that every WeeChat script plugin can be added, apart from the one for JavaScript.
+* Compiled from source, not .apks
 
-The less commonly used Guile (Scheme), Lua, PHP and Tcl plugins are disabled by default, to save a bit of memory and
- disk space, but they can easily be enabled.
+* Rebuilt every time there is a new release
 
-### Enable/disable plugins:
+* Forked from [Dockerfile by jkaberg](https://hub.docker.com/r/jkaberg/weechat)
+
+#### Additional features:
+
+* Automatically sets timezone from host machine
+
+* Relay plugin enabled for use with the [Glowing Bear](https://www.glowing-bear.org/) web interface
+
+* Includes [python-potr](https://pypi.org/project/python-potr/) module for encrypted Off-The-Record
+  messaging
+
+* Aspell spell-checker plugin enabled
+
+* Shell, Perl, Python and Ruby plugins enabled. All other scripting plugins can be enabled, apart
+  from the one for JavaScript
+
+* The less commonly used Guile, Lua, PHP and Tcl plugins are disabled by default, but they can
+  easily be enabled by editing the Dockerfile and building your own image
+
+#### Enable/disable plugins:
 
 * **To enable Guile (Scheme):**
-Uncomment guile-dev (22) and guile (42) and comment out line 59.
+Uncomment guile-dev (22) and guile (42) and comment out line 60
 
 * **To enable Lua:**
-Uncomment lua-dev (23) and lua-libs (43) and comment out line 60.
+Uncomment lua-dev (23) and lua-libs (43) and comment out line 61
 
 * **To enable PHP:**
-Uncomment php-dev (25), argon2-dev (26), libxml2-dev (27) and php-embed (45) and comment out line 62.
+Uncomment php-dev (25), argon2-dev (26), libxml2-dev (27) and php-embed (45) and comment out line 63
 
 * **To enable Tcl:**
-Uncomment tcl-dev (30) and tcl (48) and comment out line 65.
+Uncomment tcl-dev (30) and tcl (48) and comment out line 66
 
 * **To disable Aspell:**
-Comment out aspell-dev (32), aspell-libs (49) and aspell-en (50).
+Comment out aspell-dev (31), aspell-libs (49) and aspell-en (50)
 [Or you can add additional language dictionaries.](https://ftp.gnu.org/gnu/aspell/dict/0index.html)
 
-### Run:
+### To run, paste this:
 
-To run it, simply use ```docker run```:
+    $ docker run --rm -it \
+        --name weechat \
+        --log-driver none \
+        -e UID=$(id -u) -e GID=$(id -g) \
+        -p 9001:9001 \
+        -v /etc/hosts:/etc/hosts:ro \
+        -v /etc/localtime:/etc/localtime:ro \
+        -v path/to/weechat/config:weechat \
+        eggbean/weechat
 
-``` docker run -it --name weechat -e UID=1000 -e GID=1000 -v path/to/weechat/config:/weechat eggbean/weechat```
+Replace ```path/to/weechat/config``` with the location which contains your ```.weechat``` config
+directory. (If it doesn't exist, it will be created with default settings.)
 
-or docker-compose: 
-  
-
-      weechat:
-        image: eggbean/weechat
-        restart: always
-        stdin_open: true
-        tty: true
-        volumes:
-          - /path/to/weechat/config:/weechat
-        environment:
-          - 'UID=1000'
-          - 'GID=1000'
-        networks:
-          - some_network
-
-Once up and running, use ```ctrl-p```, ```ctrl-q``` to detach from the session and ```docker attach weechat``` to
-reattach.
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk1MTcwOTAyNV19
--->
+Once up and running, use ```ctrl-p```, ```ctrl-q``` to detach from the session and ```docker attach
+weechat``` to reattach.
