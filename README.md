@@ -1,9 +1,9 @@
 WeeChat IRC Client
-===================
+==================
 
 * Automatically built Alpine-based Docker image for WeeChat
 
-* Compiled from source, not .apks
+* Compiled from source; does not use .apks
 
 * Rebuilt every time there is a new release
 
@@ -20,8 +20,8 @@ WeeChat IRC Client
 
 * Aspell spell-checker plugin enabled
 
-* Shell, Perl, Python and Ruby plugins enabled. All other scripting plugins can be enabled, apart
-  from the one for JavaScript
+* Shell, Perl, Python and Ruby plugins enabled. All other scripting plugins are also available,
+  apart from the one for JavaScript
 
 * The less commonly used Guile, Lua, PHP and Tcl plugins are disabled by default, but they can
   easily be enabled by editing the Dockerfile and building your own image
@@ -41,8 +41,8 @@ Uncomment php-dev (25), argon2-dev (26), libxml2-dev (27) and php-embed (45) and
 Uncomment tcl-dev (30) and tcl (48) and comment out line 66
 
 * **To disable Aspell:**
-Comment out aspell-dev (31), aspell-libs (49) and aspell-en (50)
-[Or you can add additional language dictionaries.](https://ftp.gnu.org/gnu/aspell/dict/0index.html)
+Comment out aspell-dev (31), aspell-libs (49) and aspell-en (50). 
+[Or you can add additional language dictionaries](https://ftp.gnu.org/gnu/aspell/dict/0index.html)
 
 ### To run, paste this:
 
@@ -61,3 +61,7 @@ directory. (If it doesn't exist, it will be created with default settings.)
 
 Once up and running, use ```ctrl-p```, ```ctrl-q``` to detach from the session and ```docker attach
 weechat``` to reattach.
+
+### Contact:
+
+Use the [GitHub Issues](https://github.com/eggbean/docker-weechat/issues) page.
