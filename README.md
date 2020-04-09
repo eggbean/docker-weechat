@@ -7,7 +7,7 @@ WeeChat IRC Client
 
 * Rebuilt every time there is a new release
 
-* Forked from [Dockerfile by jkaberg](https://hub.docker.com/r/jkaberg/weechat)
+* Forked/fixed from [Dockerfile by jkaberg](https://hub.docker.com/r/jkaberg/weechat)
 
 #### Additional features:
 
