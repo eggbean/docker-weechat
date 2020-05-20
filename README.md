@@ -11,12 +11,12 @@ WeeChat IRC Client
 
 #### Additional features:
 
-* Automatically sets timezone from host machine
-
 * Relay plugin enabled for use with the [Glowing Bear](https://www.glowing-bear.org/) web interface
 
 * Includes [python-potr](https://pypi.org/project/python-potr/) module for encrypted Off-The-Record
   messaging
+
+* Automatically sets timezone from host machine and uses its host file.
 
 * Aspell spell-checker plugin enabled
 

@@ -6,7 +6,7 @@ ENV UID=1000
 ENV GID=1000
 
 ADD run.sh /
-	
+
 RUN BUILD_DEPS=" \
 	cmake \
 	build-base \
