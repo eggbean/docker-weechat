@@ -44,6 +44,7 @@ RUN BUILD_DEPS=" \
 	perl \
 #	php-embed \
 	python3 \
+	py3-pip \
 	ruby-libs \
 #	tcl \
 	aspell-libs \
