@@ -49,6 +49,7 @@ RUN BUILD_DEPS=" \
 #	tcl \
 	aspell-libs \
 	aspell-en \
+	tzdata \
 	&& update-ca-certificates \
 	&& pip3 install --upgrade python-potr \
 	&& WEECHAT_TARBALL="$(curl -sS https://api.github.com/repos/weechat/weechat/releases/latest | jq .tarball_url -r)" \
