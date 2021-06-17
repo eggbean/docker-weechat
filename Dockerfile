@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.12
 
 ENV TERM=screen-256color
 ENV LANG=C.UTF-8
