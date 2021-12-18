@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3.15
 
 ENV TERM=screen-256color
 ENV LANG=C.UTF-8
@@ -19,8 +19,9 @@ RUN BUILD_DEPS=" \
 	libgcrypt-dev \
 	ca-certificates \
 	gettext-dev \
+	asciidoctor \
 #	guile-dev \
-#	lua-dev \
+	lua-dev \
 	perl-dev \
 #	php-dev \
 #	argon2-dev \
@@ -38,14 +39,15 @@ RUN BUILD_DEPS=" \
 	libgcrypt \
 	su-exec \
 	curl \
+	gettext \
 	shadow \
 #	guile \
-#	lua-libs \
+	lua \
 	perl \
 #	php-embed \
 	python3 \
 	py3-pip \
-	ruby-libs \
+	ruby \
 #	tcl \
 	aspell-libs \
 	aspell-en \
@@ -60,7 +62,7 @@ RUN BUILD_DEPS=" \
 	&& cmake .. -DCMAKE_INSTALL_PREFIX=/usr \
 		-DENABLE_JAVASCRIPT=OFF \
 		-DENABLE_GUILE=OFF \
-		-DENABLE_LUA=OFF \
+#		-DENABLE_LUA=OFF \
 #		-DENABLE_PERL \
 		-DENABLE_PHP=OFF \
 #		-DENABLE_PYTHON=OFF \
