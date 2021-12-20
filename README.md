@@ -1,23 +1,14 @@
 WeeChat IRC Client
 ==================
 
-* Automatically built Alpine-based Docker image for WeeChat
+* Alpine-based Docker image for WeeChat built every time there is a new release
 
-* Compiled from source; does not use .apks
+* Compiled from source; does not use .apks, which could be older versions
 
-* Rebuilt every time there is a new release
-
-#### Additional features:
+* Multi-architecture builds: x86_64, armv7 and arm64
 
 * Includes [python-potr](https://pypi.org/project/python-potr/) module for encrypted Off-The-Record
   messaging
-
-* Automatically sets timezone from host machine and uses its host file.
-
-* Aspell spell-checker plugin enabled
-
-* Shell, Perl, Python, Lua and Ruby plugins enabled. All other scripting plugins are also available,
-  apart from the one for JavaScript
 
 * The less commonly used Guile, PHP and Tcl plugins are disabled by default, but they can
   easily be enabled by editing the Dockerfile and building your own image
@@ -46,11 +37,11 @@ Comment out aspell-dev (32), aspell-libs (52) and aspell-en (53).
         -p 9001:9001 \
         -v /etc/hosts:/etc/hosts:ro \
         -v /etc/localtime:/etc/localtime:ro \
-        -v path/to/weechat/config:weechat \
+        -v "${HOME}":/weechat \
         eggbean/weechat
 
-Replace ```path/to/weechat/config``` with the location which contains your ```.weechat``` config
-directory. (If it doesn't exist, it will be created with default settings.)
+Configuration and data files are now located at `~/.config` and `~/.local/share`
+(v3.2 onwards). (If they doesn't exist, they will be created with default settings.)
 
 Once up and running, use ```ctrl-p```, ```ctrl-q``` to detach from the session and ```docker attach
 weechat``` to reattach.
