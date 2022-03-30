@@ -1,56 +1,63 @@
-FROM alpine:3.15
+FROM alpine:latest
 
-ENV TERM=screen-256color
+ENV TERM=xterm-256color
 ENV LANG=C.UTF-8
 ENV UID=1000
 ENV GID=1000
 
 ADD run.sh /
 
-RUN BUILD_DEPS=" \
-	cmake \
-	build-base \
-	libcurl \
-	libintl \
-	zlib-dev \
-	curl-dev \
-	gnutls-dev \
-	ncurses-dev \
-	libgcrypt-dev \
-	ca-certificates \
-	gettext-dev \
+RUN set -eux; BUILD_DEPS=" \
 	asciidoctor \
-#	guile-dev \
-	lua-dev \
+	cmake \
+	curl \
+	curl-dev \
+	g++ \
+	gcc \
+	gettext-dev \
+	gnutls-dev \
+	libgcrypt-dev \
+	make \
+	ncurses-dev \
+	pkgconf \
+	zlib-dev \
+	zstd-dev \
+	argon2-dev \
+	aspell-dev \
+	guile-dev \
+	libxml2-dev \
+	lua5.3-dev \
 	perl-dev \
-#	php-dev \
-#	argon2-dev \
-#	libxml2-dev \
+	php7-dev \
+	php7-embed \
 	python3-dev \
 	ruby-dev \
-#	tcl-dev \
-	aspell-dev \
+	tcl-dev \
 	jq \
 	tar" \
 	&& apk -U upgrade && apk add --no-cache \
 	${BUILD_DEPS} \
-	gnutls \
-	ncurses \
-	libgcrypt \
-	su-exec \
-	curl \
+	ca-certificates \
 	gettext \
-	shadow \
-#	guile \
-	lua \
-	perl \
-#	php-embed \
-	python3 \
-	py3-pip \
-	ruby \
-#	tcl \
+	gnutls \
+	libcurl \
+	libgcrypt \
+	ncurses-libs \
+	ncurses-terminfo \
+	zlib \
+	zstd \
 	aspell-libs \
 	aspell-en \
+	guile \
+	guile-libs \
+	lua5.3-libs \
+	perl \
+	php7 \
+	php7-embed \
+	python3 \
+	py3-pip \
+	ruby-libs \
+	tcl \
 	tzdata \
 	&& update-ca-certificates \
 	&& pip3 install --upgrade wheel \
@@ -64,15 +71,15 @@ RUN BUILD_DEPS=" \
 		-DCMAKE_BUILD_TYPE=None \
 		-DENABLE_MAN=ON \
 		-DENABLE_JAVASCRIPT=OFF \
-		-DENABLE_GUILE=OFF \
-#		-DENABLE_LUA=OFF \
-#		-DENABLE_PERL \
-		-DENABLE_PHP=OFF \
-#		-DENABLE_PYTHON=OFF \
-#		-DENABLE_RUBY=OFF \
-		-DENABLE_TCL=OFF \
-#		-DENABLE_RELAY=OFF \
-#		-DENABLE_SPELL \
+		-DENABLE_GUILE=ON \
+		-DENABLE_LUA=ON \
+		-DENABLE_PERL=ON \
+		-DENABLE_PHP=ON \
+		-DENABLE_PYTHON=ON \
+		-DENABLE_RUBY=ON \
+		-DENABLE_TCL=ON \
+		-DENABLE_RELAY=ON \
+		-DENABLE_SPELL=ON \
 	&& make && make install \
 	&& mkdir /weechat \
 	&& addgroup -g $GID -S weechat \
