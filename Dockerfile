@@ -59,6 +59,8 @@ RUN set -eux; BUILD_DEPS=" \
 	ruby-libs \
 	tcl \
 	tzdata \
+	su-exec \
+	shadow \
 	&& update-ca-certificates \
 	&& pip3 install --upgrade wheel \
 	&& pip3 install --upgrade python-potr \
