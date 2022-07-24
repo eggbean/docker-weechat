@@ -1,9 +1,10 @@
-FROM alpine:latest
+FROM alpine:3.15
 
 ENV TERM=xterm-256color
 ENV LANG=C.UTF-8
 ENV UID=1000
 ENV GID=1000
+ENV PIP_ROOT_USER_ACTION=ignore
 
 ADD run.sh /
 
@@ -22,14 +23,13 @@ RUN set -eux; BUILD_DEPS=" \
 	pkgconf \
 	zlib-dev \
 	zstd-dev \
-	argon2-dev \
 	aspell-dev \
 	guile-dev \
-	libxml2-dev \
 	lua5.3-dev \
 	perl-dev \
-	php7-dev \
-	php7-embed \
+	# argon2-dev \
+	# libxml2-dev \
+	# php7-dev \
 	python3-dev \
 	ruby-dev \
 	tcl-dev \
@@ -45,15 +45,14 @@ RUN set -eux; BUILD_DEPS=" \
 	ncurses-libs \
 	ncurses-terminfo \
 	zlib \
-	zstd \
+	zstd-libs \
 	aspell-libs \
 	aspell-en \
 	guile \
 	guile-libs \
 	lua5.3-libs \
 	perl \
-	php7 \
-	php7-embed \
+	# php7-embed \
 	python3 \
 	py3-pip \
 	ruby-libs \
@@ -62,6 +61,7 @@ RUN set -eux; BUILD_DEPS=" \
 	su-exec \
 	shadow \
 	&& update-ca-certificates \
+	&& pip3 install --upgrade pip \
 	&& pip3 install --upgrade wheel \
 	&& pip3 install --upgrade python-potr \
 	&& WEECHAT_TARBALL="$(curl -sS https://api.github.com/repos/weechat/weechat/releases/latest | jq .tarball_url -r)" \
@@ -76,7 +76,7 @@ RUN set -eux; BUILD_DEPS=" \
 		-DENABLE_GUILE=ON \
 		-DENABLE_LUA=ON \
 		-DENABLE_PERL=ON \
-		-DENABLE_PHP=ON \
+		-DENABLE_PHP=OFF \
 		-DENABLE_PYTHON=ON \
 		-DENABLE_RUBY=ON \
 		-DENABLE_TCL=ON \

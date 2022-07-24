@@ -10,7 +10,7 @@ WeeChat IRC Client
 * Includes [python-potr](https://pypi.org/project/python-potr/) module for encrypted Off-The-Record
   messaging
 
-* Includes all plugins apart from JavaScript.
+* Includes all plugins apart from JavaScript and PHP.
 
 ### To run, paste this:
 
