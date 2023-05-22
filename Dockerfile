@@ -1,4 +1,4 @@
-FROM alpine:3.15
+FROM alpine:3.17.3
 
 ENV TERM=xterm-256color
 ENV LANG=C.UTF-8
