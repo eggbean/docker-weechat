@@ -60,14 +60,13 @@ RUN set -eux; BUILD_DEPS=" \
 	tzdata \
 	su-exec \
 	shadow \
+	git \
 	&& update-ca-certificates \
 	&& pip3 install --upgrade pip \
 	&& pip3 install --upgrade wheel \
 	&& pip3 install --upgrade python-potr \
-	&& WEECHAT_TARBALL="$(curl -sS https://api.github.com/repos/weechat/weechat/releases/latest | jq .tarball_url -r)" \
-	&& curl -sSL $WEECHAT_TARBALL -o /tmp/weechat.tar.gz \
-	&& mkdir -p /tmp/weechat/build \
-	&& tar xzf /tmp/weechat.tar.gz --strip 1 -C /tmp/weechat \
+	&& git clone https://github.com/weechat/weechat.git /tmp/weechat \
+	&& mkdir /tmp/weechat/build \
 	&& cd /tmp/weechat/build \
 	&& cmake .. -DCMAKE_INSTALL_PREFIX=/usr \
 		-DCMAKE_BUILD_TYPE=None \
