@@ -1,7 +1,8 @@
 name: build-dev
 
 on:
-  [workflow_dispatch]
+  schedule:
+  - cron: "0 0 * * *"
 
 jobs:
   build_and_push_to_registry:
