@@ -1,16 +1,15 @@
 WeeChat IRC Client
 ==================
 
-* Alpine-based Docker image for WeeChat built every time there is a new release
+* Tiny Alpine-based Docker images for WeeChat built every time there is a new release
+
+* For the latest daily build: `docker pull eggbean/weechat:dev`
 
 * Compiled from source; does not use .apks, which could be older versions
 
-* Multi-architecture builds: x86_64, armv7 and arm64
+* Multi-architecture builds: x86_64, arm and arm64
 
-* Includes [python-potr](https://pypi.org/project/python-potr/) module for encrypted Off-The-Record
-  messaging
-
-* Includes all plugins apart from JavaScript and PHP.
+* Includes all plugins apart from JavaScript and PHP (not used by any scripts in [the scripts repository](https://weechat.org/scripts/)).
 
 ### To run, paste this:
 
@@ -24,8 +23,7 @@ WeeChat IRC Client
         -v "${HOME}":/weechat \
         eggbean/weechat
 
-Configuration and data files are now located at `~/.config` and `~/.local/share`
-(v3.2 onwards). (If they doesn't exist, they will be created with default settings)
+Configuration and data files are located at `~/.config/weechat` and `~/.local/share/weechat` (If they don't exist, they'll be created with default settings).
 
 Once up and running, use ```ctrl-p```, ```ctrl-q``` to detach from the session and ```docker attach
 weechat``` to reattach.
