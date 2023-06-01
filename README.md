@@ -9,7 +9,7 @@ WeeChat IRC Client
 
 * Multi-architecture builds: x86_64, arm and arm64
 
-* Includes all plugins apart from JavaScript and PHP (not used by any scripts in [the scripts repository](https://weechat.org/scripts/)).
+* Includes all plugins apart from JavaScript and PHP (not used by any scripts in [the scripts repository](https://bit.ly/wscripts)).
 
 ### To run, paste this:
 
@@ -23,11 +23,11 @@ WeeChat IRC Client
         -v "${HOME}":/weechat \
         eggbean/weechat
 
-Configuration and data files are located at `~/.config/weechat` and `~/.local/share/weechat` (If they don't exist, they'll be created with default settings).
+Configuration and data files are located at `$XDG_CONFIG_HOME/weechat` and `$XDG_DATA_HOME/weechat` (if they don't exist, they'll be created with default settings).
 
 Once up and running, use ```ctrl-p```, ```ctrl-q``` to detach from the session and ```docker attach
 weechat``` to reattach.
 
 ### Contact:
 
-Use the [GitHub Issues](https://github.com/eggbean/docker-weechat/issues) page.
+Use the [GitHub Issues](https://bit.ly/dwissues) page.
