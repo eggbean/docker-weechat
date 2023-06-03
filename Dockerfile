@@ -1,10 +1,9 @@
-FROM alpine:3.17.3
+FROM alpine:latest
 
 ENV TERM=xterm-256color
 ENV LANG=C.UTF-8
 ENV UID=1000
 ENV GID=1000
-ENV PIP_ROOT_USER_ACTION=ignore
 
 ADD run.sh /
 
@@ -54,7 +53,6 @@ RUN set -eux; BUILD_DEPS=" \
 	perl \
 	# php7-embed \
 	python3 \
-	py3-pip \
 	ruby-libs \
 	tcl \
 	tzdata \
@@ -62,9 +60,6 @@ RUN set -eux; BUILD_DEPS=" \
 	shadow \
 	git \
 	&& update-ca-certificates \
-	&& pip3 install --upgrade pip \
-	&& pip3 install --upgrade wheel \
-	&& pip3 install --upgrade python-potr \
 	&& git clone https://github.com/weechat/weechat.git /tmp/weechat \
 	&& mkdir /tmp/weechat/build \
 	&& cd /tmp/weechat/build \
