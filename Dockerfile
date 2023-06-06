@@ -58,6 +58,7 @@ RUN set -eux; BUILD_DEPS=" \
 	tzdata \
 	su-exec \
 	shadow \
+	py3-websocket-client \
 	git \
 	&& update-ca-certificates \
 	&& git clone https://github.com/weechat/weechat.git /tmp/weechat \
