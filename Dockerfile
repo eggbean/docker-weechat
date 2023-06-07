@@ -41,6 +41,7 @@ RUN set -eux; BUILD_DEPS=" \
 	gnutls \
 	libcurl \
 	libgcrypt \
+	ncurses \
 	ncurses-libs \
 	ncurses-terminfo \
 	zlib \
@@ -59,6 +60,8 @@ RUN set -eux; BUILD_DEPS=" \
 	su-exec \
 	shadow \
 	py3-websocket-client \
+	fzf \
+	fzf-tmux \
 	git \
 	&& update-ca-certificates \
 	&& git clone https://github.com/weechat/weechat.git /tmp/weechat \
